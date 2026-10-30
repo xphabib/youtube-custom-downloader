@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "ytclip – YouTube Clip Queue",
+  "short_name": "ytclip",
+  "version": "0.1.0",
+  "description": "Mark clips on YouTube videos and queue them for local download, trimming and smart cropping with the ytclip CLI.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA27DvORFXX2rfTg6xSULd09OWFeBVP+WqgOOb376bHgKvWFhtU/CXqRoDmezN5F2t5B/6C+kp8jnZEL6kyaRFMDh4gmXmXsrgwOI3GaEjJykeHfBN9ymL9Ed6gBOVtEYcdSXSfg89MNcLYTb6wCCw6zNFTE4CCaLgGos19D/ubo/zydJeR8f9saW+KvI9DEYbIo75afwLHezTYwf17+royE9M8N/teNKmSdPzT6Lu6vtFmWUFzdngfa6W7fWLnfGz7bNd2uU4WRBcqgsL8pmzoaEpItJ1dl7HF3m9o5FkOABVtoeYS/x9tQVYaq6GoJCk8cWgtchwaAsqzsGGJe4m2QIDAQAB",
+  "minimum_chrome_version": "116",
+  "action": {
+    "default_title": "Queue a clip with ytclip",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png" }
+  },
+  "side_panel": { "default_path": "index.html" },
+  "background": { "service_worker": "background.js" },
+  "content_scripts": [
+    { "matches": ["https://www.youtube.com/*"], "js": ["content.js"], "run_at": "document_idle" }
+  ],
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "permissions": ["nativeMessaging", "storage", "activeTab", "scripting", "sidePanel"],
+  "host_permissions": ["https://www.youtube.com/*", "https://m.youtube.com/*"]
+}

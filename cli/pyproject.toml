@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ytclip"
+version = "0.1.0"
+description = "Queue YouTube clips from Chrome, then download, trim and smart-crop them locally."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12",
+    "rich>=13",
+    "numpy>=1.26",
+    "opencv-python-headless>=4.9",
+    "yt-dlp[default]>=2025.11.12",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+ytclip = "ytclip.cli:main"
+ytclip-native-host = "ytclip.native.host:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "media: tests that run real ffmpeg/ffprobe on synthetic footage",
+]
